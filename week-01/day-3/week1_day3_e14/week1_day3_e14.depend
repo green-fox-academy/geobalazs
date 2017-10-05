@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1507133415 source:c:\users\balazs\gfx\greenfox\geobalazs\week-01\day-3\week1_day3_e14\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+
