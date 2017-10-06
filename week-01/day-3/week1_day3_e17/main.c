@@ -4,10 +4,10 @@
 
 int main()
 {
-    float w = 24;
+    float w = 25%2;
 	int out = 0;
 	// if w is even increment out by one
-	if ( out < w){
+	if (w == 0){
        out++;
 	}
     printf("%d" , out);
