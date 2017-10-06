@@ -12,18 +12,14 @@ it is up to you to turn on the AC
 
 int main()
 {
-    int temperature = 3;
+    int temperature = 21;
 
     if (temperature <= 20 )
-
         printf("it is too cold for the AC");
-    else if ( (temperature > 24) || (temperature < 30))
-        printf("you should turn on the AC");
-     else if ( (temperature > 21) || (temperature < 24))
+    else if (temperature < 25)
         printf("it is up to you to turn on the AC");
-     else
-        printf("it is too hot for the AC turn off");
-
+    else
+        printf("you should turn on the AC");
 
     return 0;
 }
