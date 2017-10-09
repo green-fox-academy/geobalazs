@@ -9,6 +9,7 @@ int sum();
 
 int main()
 {
+    printf("give a number:");
     scanf("%d/n" , &number);
     printf("%d" , sum(number));
 
