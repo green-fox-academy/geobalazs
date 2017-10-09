@@ -3,21 +3,21 @@
 #include "GFX.h"
 
 // define a variable and assign the value `Greenfox` to it in a .h file
-// create a function called `greet` that greets it's input parameter
+// create a function called `greet` that greets its input parameter
 // define more names to greet, call the function multiple times
 
-void greet(str1 , str2 , str3);
+void greet(name);
 
 int main()
 {
-    greet(str1 , str2 , str3);
-
+    greet("Gergo");
+    greet("Adam");
+    greet("Zoli");
+    greet("Andris");
     return 0;
 }
-void greet(str1 , str2 , str3){
+void greet(name){
 
-    printf("Hello %s!\n" , str1);
-    printf("Hello %s!\n" , str2);
-    printf("Hello %s!\n" , str3);
+    printf("Hello %s in %s!\n" , name , GFX );
 
 }
