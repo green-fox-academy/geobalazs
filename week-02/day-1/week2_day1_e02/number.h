@@ -1,1 +1,1 @@
-int NUMBER = 20;
+int number = 0;

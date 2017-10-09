@@ -9,14 +9,15 @@ int sum();
 
 int main()
 {
-    printf("%d" , sum(NUMBER));
+    scanf("%d/n" , &number);
+    printf("%d" , sum(number));
 
     return 0;
 }
 
-int sum (int NUMBER) {
+int sum (number) {
     int j = 0;
-        for(int i = 1; i <= NUMBER; i++){
+        for(int i = 1; i <= number; i++){
             j += i;
         }
     return j;
