@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include "another_file.c"
 #include "another_file.h"
 
 // TODO: Include needed header files
 
 int main() {
     // Set the default state of the variable
-    an_example_number = 0;
+    an_example_number = 10;
 
     // Create variables
     char str[] = "Multiple file inclusion example project string";
