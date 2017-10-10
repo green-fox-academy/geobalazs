@@ -26,18 +26,20 @@ int main()
     printf("\nGive a number for a position to delete one number from your array from 0 to %d:\n" , array_size);
 
     scanf("%d" , &index);
+    if (index < 0){
+        printf("Try again!");
+    } else {
+        for(int i = index - 1 ; i < array_size ; i++){
+            arr[i] = arr[i+1];
+        }
 
-    for(int i = index - 1 ; i < array_size ; i++){
-        arr[i] = arr[i+1];
+        printf("Array after deletion of index %d\n" , index);
+
+        for(int i = 0 ; i < array_size ; i++){
+
+            printf("%d\t" , arr[i]);
+
+        }
     }
-
-    printf("Array after deletion of index %d\n" , index);
-
-    for(int i = 0 ; i < array_size ; i++){
-
-        printf("%d\t" , arr[i]);
-
-    }
-
     return 0;
 }
