@@ -2,6 +2,7 @@
 #include <string.h>
 
 int num = 0;
+char name[100];
 void func();
 
 int main()
@@ -19,5 +20,8 @@ int main()
 void func(){
         printf("Please type a number:\n");
         scanf("%d" , &num);
-        printf("Your number is: %d" , num);
+        printf("Your number is: %d\n" , num);
+        printf("Please type Your name:\n");
+        gets(name);
+        puts(name);
 }
