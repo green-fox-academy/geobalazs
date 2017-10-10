@@ -22,9 +22,8 @@ int main() {
         ch = getch();
     }
     buffer[i]=0;
-    puts(buffer);
     //TODO:
     // Print it out
-    //printf("%c" , buffer);
+    puts(buffer);
     return 0;
 }
