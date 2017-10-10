@@ -12,6 +12,7 @@ int main()
 }
 
 void char_to_ascii(ch){
+        printf("Please give a character and press enter:\n");
         scanf("%c" , &ch);
-        printf("%d" , ch);
+        printf("The ASCII code of your character:\n%d" , ch);
     }
