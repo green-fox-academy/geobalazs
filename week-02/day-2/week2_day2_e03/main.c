@@ -8,9 +8,17 @@ int main() {
     // Print out the content of the arrays
     for (int i = 0 ; i <= 5; i++){
 
-            printf("%d \t", int_array[i]);
+            printf("%d\t\t", int_array[i]);
 
     }
+    printf("\n");
+    printf("\n");
 
+    for (int i = 0 ; i <= 5; i++){
+
+            printf("%f.3\t", float_array[i]);
+
+    }
+    printf("\n");
     return 0;
 }
