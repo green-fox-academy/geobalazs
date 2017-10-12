@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
+void palindrome(){
 
-    char str[]="radrohanahordar";
+    char str[]="ruzs";
 
     int str_l = strlen(str);
 
@@ -20,5 +19,11 @@ int main()
         printf("'%c" , str[i]);
 
     }
+
+}
+
+int main()
+{
+    palindrome();
 
 }
