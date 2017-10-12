@@ -2,14 +2,19 @@
 #include <string.h>
 
 int anagram(){
-   char s1[] = "cseteimre";
-   char s2[] = "imrecsete";
+   char s1[] = "balazs";
+   char s2[] = "balazs";
 
    char temp;
 
    int i, j;
    int n  = strlen(s1);
    int n1 = strlen(s2);
+
+   printf("Give a word\n");
+   scanf("%s" , &s1);
+   printf("Give a word\n");
+   scanf("%s" , &s2);
 
    // If both strings are of different length, then they are not anagrams
 
