@@ -21,17 +21,19 @@ int guess_number(){
 
     printf("%d" , rand_num);
 
-    do{
+    while (i <= 2){
         printf("You have %d try!\nGive your guess:" , j);
         scanf("%d" , &guess);
         i++;
         j--;
-    }while(i <= 2);
-      if (rand_num == guess){
+        if (rand_num == guess){
+        printf("You win!");
         break;
-      } printf("Try again!");
+        }printf("Try again!");
+    }
 
-    printf("You win!");
+
+
 
 
     /*if(rand_num == guess1){
