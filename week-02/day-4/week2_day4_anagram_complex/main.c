@@ -1,53 +1,56 @@
 #include <stdio.h>
 #include <string.h>
 
-int main (void) {
-   char word1[] = "cseteimre";
-   char word2[] = "cseteimre";
+int anagram(){
+   char s1[] = "cseteimre";
+   char s2[] = "imrecsete";
 
    char temp;
 
    int i, j;
-   int word1_length  = strlen(word1);
-   int word2_length = strlen(word2);
+   int n  = strlen(s1);
+   int n1 = strlen(s2);
 
    // If both strings are of different length, then they are not anagrams
 
-   if( word1_length != word2_length) {
-      printf("%s and %s are not anagrams! \n", word1, word2);
+   if( n != n1) {
+      printf("%s and %s are not anagrams! \n", s1, s2);
       return 0;
    }
 
    // lets sort both strings first −
 
-   for (i = 0; i < word1_length-1; i++) {
-      for (j = i+1; j < word1_length; j++) {
-         if (word1[i] > word1[j]) {
-            temp  = word1[i];
-            word1[i] = word1[j];
-            word1[j] = temp;
+   for (i = 0; i < n-1; i++) {
+      for (j = i+1; j < n; j++) {
+         if (s1[i] > s1[j]) {
+            temp  = s1[i];
+            s1[i] = s1[j];
+            s1[j] = temp;
          }
-      }
-   }
-   for (i = 0; i < word2_length-1; i++) {
-      for (j = i+1; j < word2_length; j++) {
-         if (word2[i] > word2[j]) {
-            temp  = word2[i];
-            word2[i] = word2[j];
-            word2[j] = temp;
+         if (s2[i] > s2[j]) {
+            temp  = s2[i];
+            s2[i] = s2[j];
+            s2[j] = temp;
          }
       }
    }
 
    // Compare both strings character by character
 
-   for(i = 0; i<word1_length; i++) {
-      if(word1[i] != word2[i]) {
-         printf("Strings are not anagrams! \n", word1, word2);
+   for(i = 0; i<n; i++) {
+      if(s1[i] != s2[i]) {
+         printf("Strings are not anagrams! \n", s1, s2);
          return 0;
       }
    }
 
    printf("Strings are anagrams! \n");
+   return 0;
+}
+
+int main () {
+
+   anagram();
+
    return 0;
 }
