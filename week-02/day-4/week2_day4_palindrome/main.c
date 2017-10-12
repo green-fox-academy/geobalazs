@@ -5,6 +5,10 @@ void palindrome(){
 
     char str[]="ruzs";
 
+    printf("Give a word:\n");
+
+    scanf("%s" , &str);
+
     int str_l = strlen(str);
 
     for(int i = 0 ; i <= str_l ; i++){
