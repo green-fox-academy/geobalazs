@@ -14,7 +14,10 @@ return 485;
 int main()
 {
 
-    printf("%d", return485());
+    int num = (int)return485() - 256;
+
+    //printf("%d\n", return485());
+    printf("%d", num);
 
     return 0;
 }
