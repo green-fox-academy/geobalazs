@@ -10,17 +10,12 @@ int main ()
     char *first, *last;
 
     first = strchr (str , 's');
+    last = strrchr (str , 's');
 
-    printf("%d\n" , str);
-    printf("%c\n" , first);
-    printf("%d\n" , first);
-    printf("%d" , first-str+1);
-    //last = ;
+    int distance = (last-str) - (first-str);
 
-    //for (int i = ; ; i++){
+    printf("%d" , distance);
 
-
-    //}
 
     return 0;
 }
