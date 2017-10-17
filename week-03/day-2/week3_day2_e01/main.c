@@ -9,7 +9,7 @@ main()
 {
 	int  i = 2;
 	float f = 13.5;
-	float result = f / (float)i;
+	float result = f / i;
 
 
     printf("%f" , result);
