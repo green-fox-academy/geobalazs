@@ -4,11 +4,13 @@
 
 int main()
 {
-	float val;
+	float val = 0;
 	char str[5];
+
 	strcpy(str, "3.14");
 
-	printf("%s", str);
+    val = atoi(str);
+	printf("String value: %s , float value: %.2f", str , val);
 
 	//TODO: print out the value of pi, first as a string, then a float value.
 
