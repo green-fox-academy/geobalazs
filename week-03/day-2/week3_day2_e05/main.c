@@ -14,7 +14,7 @@ return 485;
 int main()
 {
 
-    int num = (int)return485() - 256;
+    int num = (unsigned char)return485();
 
     //printf("%d\n", return485());
     printf("%d", num);
