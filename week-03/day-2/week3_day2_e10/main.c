@@ -7,10 +7,13 @@
 
 int main()
 {
-    //printf("Type in a sentence:\n\n");
-    char string[256] = "Hello World, here I am!";
+
+    char string[256];
     const char s[] = " ";
     char *token;
+
+    printf("Type in a sentence:\n\n");
+    gets(string);
 
     token = strtok(string , s);
 
