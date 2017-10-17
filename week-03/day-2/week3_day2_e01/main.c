@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <conio.h>
+
+//TODO: print out the f/i quotient
+//QUESTION: do you need explicit conversion? << Convarsion is not necessary
+
+
+main()
+{
+	int  i = 2;
+	float f = 13.5;
+	float result = f / i;
+
+
+    printf("%f" , result);
+
+
+	return 0;
+}
