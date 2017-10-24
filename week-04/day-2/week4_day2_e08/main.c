@@ -13,11 +13,11 @@ int main() {
     int* low_number_pointer = &low_number;
 
     int temp = *low_number_pointer;
-    low_number_pointer = *high_number_pointer;
-    high_number_pointer = temp;
+    *low_number_pointer = *high_number_pointer;
+    *high_number_pointer = temp;
 
-    printf("%d\n" , high_number_pointer);
-    printf("%d\n" , low_number_pointer);
+    printf("%d\n" , high_number);
+    printf("%d\n" , low_number);
 
     return 0;
 }
