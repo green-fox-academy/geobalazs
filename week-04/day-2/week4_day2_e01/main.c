@@ -5,9 +5,9 @@
 
 int main() {
     int number = 1234;
-    int *p_number = &number;
+    //int *p_number = &number;
 
-    printf("The memory address of the number variable: %p", p_number);
+    printf("The memory address of the number variable: %p", &number);
 
     return 0;
 }
