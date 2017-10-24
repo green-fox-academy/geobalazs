@@ -16,11 +16,13 @@ int main() {
     printf("\n%p , %d\n" , high_number_pointer , *high_number_pointer);
     printf("%p , %d\n" , low_number_pointer , *low_number_pointer);
 
-    int *high = low_number_pointer;
-    int *low = high_number_pointer;
+    int *temp = high_number_pointer;
+    high_number_pointer = low_number_pointer;
+    low_number_pointer = temp;
 
-    printf ("\n%p, %d\n", high , *high);
-    printf ("%p , %d\n", low , *low);
+
+    printf ("\n%p, %d\n", high_number_pointer , *high_number_pointer);
+    printf ("%p , %d\n", low_number_pointer , *low_number_pointer);
 
 
 
