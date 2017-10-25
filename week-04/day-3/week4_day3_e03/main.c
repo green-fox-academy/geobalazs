@@ -22,17 +22,17 @@ float dist_calc(point_t point1 , point_t point2);
 
 int main()
 {
-    //int a = 0;
-    //int b = 0;
+    int a = 0;
+    int b = 0;
 
-    //printf("Give me two number:");
-    //scanf("%d" , &a);
-    //scanf("%d" , &b);
+    printf("Give me two number:");
+    scanf("%d" , &a);
+    scanf("%d" , &b);
     point_t point_one = create_point( 4 , 2);
 
-    //printf("Give me two number:");
-    //scanf("%d" , &a);
-    //scanf("%d" , &b);
+    printf("Give me two number:");
+    scanf("%d" , &a);
+    scanf("%d" , &b);
     point_t point_two = create_point( 5 , 10);
 
     float dist = dist\_calc( point_one , point_two );
