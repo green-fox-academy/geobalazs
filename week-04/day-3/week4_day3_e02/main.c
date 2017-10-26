@@ -14,17 +14,17 @@ struct Car {
 
 void car_stats(struct Car autocar){
 
-    if( CarType != 4){
-    printf( "%d:",car.km);
-    printf( "%d:",car.gas);
+    if( autocar.type != 3){
+    printf( "I drove: %.1f\n",autocar.km);
+    printf( "Gas left: %.1f\n",autocar.gas);
     } else{
-    printf( "%d:",car.km);
+    printf( "%f\n",autocar.km);
     }
 }
 
 int main() {
 
-    struct Car car;
+    struct Car car = {VOLVO , 100 , 32};
 
     car_stats(car);
 
