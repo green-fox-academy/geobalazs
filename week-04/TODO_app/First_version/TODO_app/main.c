@@ -18,29 +18,45 @@
 
 int main()
 {
-    const char command [] = "-a -wr -rd -l -e -rm -c -p -lp";
+    //const char command [] = "-a -wr -rd -l -e -rm -c -p -lp";
     char command_input[5];
-
+    int8_t command_finder = 0;
     readfcknmanual();
 
     user_input(command_input);
 
-    while (strstr( command , command_input ) != NULL){
+    if (command_finder == 1)
+        command_finder = 0;
+        while ( command_finder = 1 ){
 
-       printf("Hello world!");
+            if (strstr( NEW_TASK , command_input ) != NULL){
 
+                command_finder++;
+                //fv hivas
+            } else if (strstr(WRITE_TODOS , command_input) != NULL){
+                command_finder++;
 
-    }
+            } else if (strstr(LIST_BY_PRIO , command_input) != NULL){
+                command_finder++;
 
-    //char command_find = strstr( command , command_input );
+            } else if (strstr(READ_TODOS , command_input) != NULL){
+                command_finder++;
 
-    /*user_input(command_input);
+            } else if (strstr(LIST_TASK , command_input) != NULL){
+                command_finder++;
 
-    if (command_find != NULL){
+            } else if (strstr(EMPTY_LIST , command_input) != NULL){
+                command_finder++;
 
-        printf("Hello world!");
-    }else{
-        printf("Badboy");
-    }*/
+            } else if (strstr(REMOVE_TASK , command_input) != NULL){
+                command_finder++;
+
+            } else if (strstr(COMPLETE_TASK , command_input) != NULL){
+                command_finder++;
+
+            } else if (strstr(ADD_PRIO , command_input) != NULL){
+                command_finder++;
+
+            }
 
 }
