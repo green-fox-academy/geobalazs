@@ -19,44 +19,55 @@
 int main()
 {
     //const char command [] = "-a -wr -rd -l -e -rm -c -p -lp";
-    char command_input[5];
-    int8_t command_finder = 0;
+    char command_input[256];
+    int command_finder = 0;
     readfcknmanual();
 
     user_input(command_input);
 
-    if (command_finder == 1)
-        command_finder = 0;
         while ( command_finder = 1 ){
 
-            if (strstr( NEW_TASK , command_input ) != NULL){
-
+            if (strstr(NEW_TASK , command_input) != NULL){
                 command_finder++;
-                //fv hivas
-            } else if (strstr(WRITE_TODOS , command_input) != NULL){
+                printf("hello world");
+                break;
+            } /*else if (strstr(WRITE_TODOS , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
             } else if (strstr(LIST_BY_PRIO , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
             } else if (strstr(READ_TODOS , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
             } else if (strstr(LIST_TASK , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
             } else if (strstr(EMPTY_LIST , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
             } else if (strstr(REMOVE_TASK , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
             } else if (strstr(COMPLETE_TASK , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
             } else if (strstr(ADD_PRIO , command_input) != NULL){
                 command_finder++;
-
+                printf("hello world");
+                break;
+            }*/ else {
+                printf("bad boy");
+                break;
             }
+        }
+
 
 }
