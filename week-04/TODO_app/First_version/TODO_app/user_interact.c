@@ -14,6 +14,13 @@ void readfcknmanual(){
      "-p   Add priority to a task\n"
      "-lp  Lists all the tasks by priority\n\n");
 
+}
 
+void user_input(char input){
+
+    printf("Please give a task:\n");
+    scanf( "%s" , &input );
 
 }
+
+
