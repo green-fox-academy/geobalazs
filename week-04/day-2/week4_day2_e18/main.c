@@ -11,16 +11,11 @@ int main()
     char first[50];
     int i = 0;
 
-    for( i=0 ; str[i] != '\0' ; i++ ){
-        if (str[i] == ' '){
-        first[i] = '\0';
-        }
+    for( i=0 ; str[i] != ' ' ; i++ ){
+        first[i] = str[i];
+        printf("%c" , first[i]);
     }
 
-    for( i=0 ; str[i] != '\0' ; i++ ){
-        first[i] = str[i];
-    }
-    printf("%s" , first);
 
 
     return 0;
