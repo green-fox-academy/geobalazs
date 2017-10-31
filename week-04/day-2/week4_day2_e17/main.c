@@ -19,7 +19,7 @@
          }
       }
     }
-    printf("%s\n\n" , array);
+//    printf("%s\n\n" , array);
 
     for( i = 0 ; i < str_length ; i++){
 
@@ -34,11 +34,11 @@
 
         if( array[i] == array[i + 1]){
             occurence++;
-            printf("%d  %c\n" , occurence , array[i]);
+//            printf("%d  %c\n" , occurence , array[i]);
 
         }
     }
-    printf("-%d- , %c" , *max_occurence , freq_char);
+//    printf("-%d- , %c" , *max_occurence , freq_char);
 
     return freq_char;
 }
@@ -52,9 +52,11 @@ int main()
     char str[] = "e is the most frequent element.";
     int occurence_number = 0;
 
-    char ferq_letter = frequency(str , &occurence_number);
+    printf("The string: %s\n" , str);
 
-    printf("\nThe most freq char: %c , its occurence: %d\n" , ferq_letter , occurence_number);
+    char freq_letter = frequency(str , &occurence_number);
+
+    printf("\nThe most freq char: %c , its occurence: %d\n" , freq_letter , occurence_number);
 
 //    printf("\n\n%d" , actual_length);
 
