@@ -13,10 +13,11 @@ int main()
 
     for( i=0 ; str[i] != ' ' ; i++ ){
         first[i] = str[i];
-        printf("%c" , first[i]);
+       // printf("%c" , first[i]);
+        first[i + 1] = '\0';
     }
 
-
+    printf("%s" , first);
 
     return 0;
 }
