@@ -15,9 +15,11 @@ namespace PERSON {
 
 int main()
 {
-    cout << "My name: " << PERSON :: name << endl;
-    cout << "My age: "<< PERSON :: age << endl;
-    cout << "My favorite number: "<< PERSON :: fav_num << endl;
+    using namespace PERSON;
+
+    cout << "My name: " << name << endl;
+    cout << "My age: "<< age << endl;
+    cout << "My favorite number: "<< fav_num << endl;
 
     return 0;
 }
