@@ -18,8 +18,9 @@ int main()
     string name3 = "Joe";
 
     cout << "Hello " << name1 << "!" << endl;
-    cout << "Hello " << name1 << "!" << endl;
-    cout << "Hello " << name1 << "!" << endl;
+    cout << "Hello " << name2 << "!" << endl;
+    cout << "Hello " << name3 << "!" << endl;
+
 
     return 0;
 }
