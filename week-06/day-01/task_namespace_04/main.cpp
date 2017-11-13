@@ -9,7 +9,7 @@ using namespace std;
 //
 
 namespace Mark {
-    string name_1 = Mark;
+    string name1 = "Mark";
     int age_1 = 20;
     int fav_num_1 = 45;
 }
@@ -20,19 +20,22 @@ namespace Mark {
 // and your favorite number as an integer
 //
 namespace Maria {
-    string name_2 = Maria;
+    string name2 = "Maria";
     int age_2 = 15;
     int fav_num_2 = 90;
 }
 // create a function that can add the two age, and returns it
 
+int add_func(int num1 , int num2){
 
-
-int main()
-{
+    return num1 + num2;
+}
     using namespace Mark;
     using namespace Maria;
+int main()
+{
 
+    cout << add_func (age_1 , age_2);
 
     return 0;
 }
