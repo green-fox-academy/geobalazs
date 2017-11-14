@@ -18,6 +18,10 @@ class House {
         this -> area = area;
 
     }
+    ~House(){
+        cout << "No more house";
+    }
+
 
     unsigned int get_price() {
 
@@ -31,7 +35,7 @@ int main() {
   // Create a constructor for the House class that takes it's address and area.
 
   House house = House("Andrassy 66", 349);
-  cout << house.get_price();
+  cout << house.get_price() << endl;
 
   return 0;
 }
