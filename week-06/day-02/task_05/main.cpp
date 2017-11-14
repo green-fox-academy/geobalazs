@@ -19,6 +19,10 @@ class Circle {
 
             this -> radius = radius;
         }
+        ~Circle(){
+            cout << "The circle has broken";
+        }
+
 
         float get_area(){
 
