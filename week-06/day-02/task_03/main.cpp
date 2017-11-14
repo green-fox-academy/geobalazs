@@ -14,6 +14,9 @@ class Student {
       this->age = age;
       this->name = name;
     }
+    ~Student(){
+        cout << "No more name";
+    }
 
   string greet(){
 
@@ -28,7 +31,7 @@ int main() {
 
   Student so("geobalazs" , 33);
 
-  cout << so.greet();
+  cout << so.greet() << endl;
 
   return 0;
 }
