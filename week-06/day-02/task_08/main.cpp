@@ -13,6 +13,7 @@ class Student{
 
     private:
         int class_members;
+        float average;
         vector<int> grades;
     public:
         Student(int class_members){
@@ -21,8 +22,15 @@ class Student{
         void add_grade(int number){
             grades.push_back(number);
         }
-        get_average(){
-
+        void average_calc(){
+            int sum = 0;
+            for (unsigned int i = 0 ; i < grades.size() - 1 ; ++i){
+                sum += grades[i];
+            }
+            average = sum / class_members;
+        }
+        float get_average(){
+            return average;
         }
 
 };
