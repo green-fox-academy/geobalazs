@@ -21,13 +21,16 @@ class Car{
             this -> type = type;
             this -> km = km;
         }
-    void run(float new_km){
-        this -> km = km + new_km;
-    }
+        ~Car(){
+            cout << "Your car is stoped...";
+        }
+        void run(float new_km){
+            this -> km = km + new_km;
+        }
 
-    void my_print(){
-        cout << km << endl;
-    }
+        void my_print(){
+            cout << km << endl;
+        }
 } ;
 
 int main() {
