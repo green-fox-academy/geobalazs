@@ -24,8 +24,7 @@ class Pirate{
         void drink_rum(){
             this -> rum_number = rum_number + 1;
         }
-
-        void drinks(int drink_number){
+        void drinking(int drink_number){
             for(int i = 0 ; i < drink_number; i++){
                 drink_rum();
              }
@@ -47,7 +46,7 @@ int main() {
 
     Pirate po(0);
 
-    po.drinks(5);
+    po.drinking(5);
     po.rum_print();
     po.hows_goin_mate();
 
