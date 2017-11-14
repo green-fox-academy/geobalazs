@@ -24,5 +24,7 @@ class Car{
 
 int main() {
 
+    Car co("Ford" , 120);
+
   return 0;
 }
