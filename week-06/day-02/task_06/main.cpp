@@ -33,9 +33,8 @@ class Car{
 int main() {
 
     Car co("Ford" , 120);
-
+    co.my_print();
     co.run(10);
-
     co.my_print();
 
   return 0;
