@@ -47,8 +47,9 @@ int main() {
 
     Pirate po(0);
 
-    po.drinks(3);
+    po.drinks(5);
     po.rum_print();
+    po.hows_goin_mate();
 
   return 0;
 }
