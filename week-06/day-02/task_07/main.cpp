@@ -21,7 +21,9 @@ class Pirate{
         Pirate(int rum_number){
             this -> rum_number = rum_number;
         }
-
+        ~Pirate(){
+            cout << "\t\tRum is out :-O ??? HolyShit m*therfuckers" << endl;
+        }
         void drink_rum(){
             this -> rum_number = rum_number + 1;
         }
@@ -34,8 +36,10 @@ class Pirate{
 
         const char*hows_goin_mate(){
             if (rum_number >= 5){
+                cout << endl;
                 return "Arrrr!";
             } else {
+                cout << endl;
                 return "Nothin!";
             }
         }
@@ -50,6 +54,7 @@ int main() {
     po.drinking(5);
     po.rum_print();
     cout << po.hows_goin_mate();
+    cout << endl;
 
   return 0;
 }
