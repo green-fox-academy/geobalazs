@@ -15,9 +15,11 @@ class Student{
         int class_members;
         vector<int> grades;
     public:
+        Student(int class_members){
+            this -> class_members = class_members;
+        }
         void add_grade(int number){
             grades.push_back(number);
-            ++class_members;
         }
         get_average(){
 
@@ -25,7 +27,11 @@ class Student{
 
 };
 
-int main() {
+int main()
+{
+    Student so(3);
+
+
 
   return 0;
 }
