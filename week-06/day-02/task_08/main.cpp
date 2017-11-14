@@ -20,6 +20,9 @@ class Student{
         Student(int class_members){
             this -> class_members = class_members;
         }
+        ~Student(){
+            cout << "No more student!";
+        }
         void add_grade(int number){
             grades.push_back(number);
         }
@@ -43,7 +46,7 @@ int main()
     so.add_grade(5);
     so.add_grade(2);
     so.average_calc();
-    cout << "The class average: " << so.get_average();
+    cout << "The class average: " << so.get_average() << endl;
 
 
 
