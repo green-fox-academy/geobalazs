@@ -18,25 +18,25 @@ class Circle {
         Circle(float radius){
 
             this -> radius = radius;
-
         }
-    float get_area(){
 
-        return radius;
-    }
+        float get_area(){
 
-    float get_circumference(){
+            return radius * 2 * 3.14;
+        }
 
-        return radius;
-    }
+        float get_circumference(){
 
-
+            return radius * radius * 3.14;
+        }
 };
 
 int main()
 {
 
     Circle co(4);
+    cout << "Circle circumference: " << co.get_circumference() << endl;
+    cout << "Circle area: " << co.get_area() << endl;
 
   return 0;
 }
