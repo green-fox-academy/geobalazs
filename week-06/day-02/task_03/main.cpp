@@ -4,6 +4,7 @@
 using namespace std;
 
 class Student {
+
   private:
     string name;
     unsigned int age;
@@ -13,9 +14,11 @@ class Student {
       this->age = age;
       this->name = name;
     }
+
   string greet(){
 
-    return name;
+    return "Hello my name is: " + name;
+
   }
 };
 
@@ -25,7 +28,7 @@ int main() {
 
   Student so("geobalazs" , 33);
 
-  cout << "Hello my name is: " << so.greet();
+  cout << so.greet();
 
   return 0;
 }
