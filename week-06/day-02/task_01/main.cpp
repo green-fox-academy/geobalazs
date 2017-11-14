@@ -9,11 +9,12 @@ class Student {
     unsigned int age;
   public:
     //constructor for fill variables
-    Student(){
-
+    Student( string name , unsigned int age){
+        this->name = name;
+        this->age = age;
     }
     void data_print (){
-        cout << "My name: " << so.name << " My age: " << so.age << endl;
+        cout << "My name: " << name << " My age: " << age << endl;
     }
 
 };
@@ -23,11 +24,6 @@ int main() {
   // it's age to 21
 
     Student so; // objektum letrehozasa
-
-    so.name = "John";
-    so.age = 19;
-
-
 
   return 0;
 }
