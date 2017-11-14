@@ -1,23 +1,9 @@
 #include <iostream>
 #include <string>
+#include "Student.h"
 
 using namespace std;
 
-class Student {
-  private:  //varibales for storing data ALLWAYS coca-cola no, not; ALWAYS private
-    string name;
-    unsigned int age;
-  public:
-    //constructor for fill variables
-    Student( string name , unsigned int age){
-        this->name = name;
-        this->age = age;
-    }
-    void data_print (){
-        cout << "My name: " << name << " My age: " << age << endl;
-    }
-
-};
 
 int main() {
   // Create a new instace of the Student class and set it's name to "John" and
@@ -25,5 +11,6 @@ int main() {
 
     Student so("John" , 21); // objektum letrehozasa
     so.data_print();
+
   return 0;
 }
