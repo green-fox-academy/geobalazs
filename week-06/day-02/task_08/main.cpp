@@ -15,6 +15,7 @@ class Student{
         int class_members;
         float average;
         vector<int> grades;
+
     public:
         Student(int class_members){
             this -> class_members = class_members;
@@ -23,8 +24,8 @@ class Student{
             grades.push_back(number);
         }
         void average_calc(){
-            int sum = 0;
-            for (unsigned int i = 0 ; i < grades.size() - 1 ; ++i){
+            float sum = 0;
+            for (unsigned int i = 0 ; i < grades.size() ; ++i){
                 sum += grades[i];
             }
             average = sum / class_members;
@@ -38,6 +39,12 @@ class Student{
 int main()
 {
     Student so(3);
+    so.add_grade(4);
+    so.add_grade(5);
+    so.add_grade(2);
+    so.average_calc();
+    cout << "The class average: " << so.get_average();
+
 
 
 
