@@ -16,8 +16,19 @@ class Circle {
     public:
 
         Circle(float radius){
+
             this -> radius = radius;
+
         }
+    float get_area(){
+
+        return radius;
+    }
+
+    float get_circumference(){
+
+        return radius;
+    }
 
 
 };
