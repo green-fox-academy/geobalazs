@@ -25,6 +25,9 @@ class Circle: Shape {
         Circle(float radius){
             this -> radius = radius;
         }
+        ~Circle(){
+            cout << "Your life Circle is destruced >)" << endl;
+        }
         float calc_area(){
                 return this->area = radius * radius * 3.14;
         }
@@ -41,6 +44,9 @@ class Triangle: Shape {
         Triangle(float base , float height){
             this -> base = base;
             this -> height = height;
+        }
+        ~Triangle(){
+            cout << "You lost your base triangle >)" << endl;
         }
         float calc_area(){
             return this->area = base * height / 2;
