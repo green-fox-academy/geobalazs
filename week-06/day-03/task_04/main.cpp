@@ -38,11 +38,12 @@ class ChildClass: public ParentClass{
 int main ()
 {
     ParentClass pc;
-    ChildClass cc;
-    ParentClass *a = &cc;
-
-    cout << pc.non_virtual_string_func();
-    cout << cc.virtual_string_func();
+    //ChildClass cc;
+    //ParentClass *a = &cc;
+    ParentClass* a = new ChildClass();
+    //cout << pc.non_virtual_string_func();
+    //cout << cc.virtual_string_func();
+    cout << pc.virtual_string_func() << a -> non_virtual_string_func() << "or" << a -> virtual_string_func() << pc.non_virtual_string_func();
 
     return 0;
 }
