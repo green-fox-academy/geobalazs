@@ -12,34 +12,49 @@ using namespace std;
 class Shape {
 
     public:
-        virtual void calc_area() = 0;
-
+        virtual float calc_area() = 0;
 };
 
 class Circle: Shape {
 
     private:
         float area;
+        float radius;
 
     public:
-        void calc_area(float radius){
-            area = radius * radius * 2;
+        Circle(float radius){
+            this -> radius = radius;
+        }
+        float calc_area(){
+                return this->area = radius * radius * 3.14;
         }
 };
 
-class Triangle: Shape{
+class Triangle: Shape {
 
     private:
         float area;
+        float base;
+        float height;
 
     public:
-        void calc_area(float base, float height){
-            area = base * height / 2;
+        Triangle(float base , float height){
+            this -> base = base;
+            this -> height = height;
+        }
+        float calc_area(){
+            return this->area = base * height / 2;
         }
 };
 
 int main()
 {
+
+    Circle co(2);
+    Triangle to(3,5);
+
+    cout << co.calc_area() << endl;
+    cout << to.calc_area() << endl;
 
     return 0;
 }
