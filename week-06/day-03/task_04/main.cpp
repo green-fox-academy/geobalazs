@@ -16,7 +16,7 @@ using namespace std;
 class ParentClass{
     public:
         virtual string virtual_string_func(){
-            return "trie";
+            return "try ";
         }
         string non_virtual_string_func(){
             return "bye";
@@ -27,10 +27,10 @@ class ParentClass{
 class ChildClass: public ParentClass{
     public:
     string virtual_string_func(){
-        return "die";
+        return "die ";
     }
     string non_virtual_string_func(){
-        return "lie";
+        return "lie ";
     }
 
 };
@@ -43,8 +43,11 @@ int main ()
     ParentClass* a = new ChildClass();
     //cout << pc.non_virtual_string_func();
     //cout << cc.virtual_string_func();
-    cout << a -> non_virtual_string_func() << endl << a -> virtual_string_func() << endl;
-    cout << ((ChildClass*)a) -> non_virtual_string_func() << endl << ((ChildClass*)a) -> virtual_string_func() << endl;
+    //cout << a -> non_virtual_string_func() << endl << a -> virtual_string_func() << endl;
+    //cout << ((ChildClass*)a) -> non_virtual_string_func() << endl << ((ChildClass*)a) -> virtual_string_func() << endl;
+
+    //This should print out try lie or die and bye
+    cout << pc.virtual_string_func() << ((ChildClass*)a) -> non_virtual_string_func() << "or " << a ->virtual_string_func() << "and "<< a -> non_virtual_string_func();
 
     return 0;
 }
