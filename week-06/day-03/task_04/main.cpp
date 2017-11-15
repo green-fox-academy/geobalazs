@@ -15,22 +15,22 @@ using namespace std;
 
 class ParentClass{
     public:
-        virtual string virtual_string_func(string text){
-            return text;
+        virtual string virtual_string_func(){
+            return "trie";
         }
-        string non_virtual_string_func(string text){
-            return text;
+        string non_virtual_string_func(){
+            return "bye";
         }
 
 };
 
-class ChildClass: ParentClass{
+class ChildClass: public ParentClass{
     public:
-    string virtual_string_func(string text){
-        return text;
+    string virtual_string_func(){
+        return "die";
     }
-    string non_virtual_string_func(string text){
-        return text;
+    string non_virtual_string_func(){
+        return "lie";
     }
 
 };
@@ -39,9 +39,10 @@ int main ()
 {
     ParentClass pc;
     ChildClass cc;
+    ParentClass *a = &cc;
 
-    cout << pc.non_virtual_string_func("hello");
-    cout << cc.virtual_string_func("bye");
+    cout << pc.non_virtual_string_func();
+    cout << cc.virtual_string_func();
 
     return 0;
 }
