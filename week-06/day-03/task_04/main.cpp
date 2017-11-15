@@ -43,7 +43,8 @@ int main ()
     ParentClass* a = new ChildClass();
     //cout << pc.non_virtual_string_func();
     //cout << cc.virtual_string_func();
-    cout << pc.virtual_string_func() << a -> non_virtual_string_func() << "or" << a -> virtual_string_func() << pc.non_virtual_string_func();
+    cout << a -> non_virtual_string_func() << endl << a -> virtual_string_func() << endl;
+    cout << ((ChildClass*)a) -> non_virtual_string_func() << endl << ((ChildClass*)a) -> virtual_string_func() << endl;
 
     return 0;
 }
