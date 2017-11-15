@@ -19,9 +19,9 @@ class Human {
 class SuperMan: Human{
     public:
         void travelling(){
-            cout << "Fly on your way, like an eagle"
-                 << "Fly as high as the sun"
-                 << "On your way like an eagle"
+            cout << "Fly on your way, like an eagle\n"
+                 << "Fly as high as the sun\n"
+                 << "On your way like an eagle\n"
                  << "Fly and touch the sun"
                  << endl;
         }
@@ -36,5 +36,14 @@ class AquaMan: Human{
 
 int main()
 {
+    Human hm;
+    SuperMan sm;
+    AquaMan am;
+
+    //hm.travelling();
+    sm.travelling();
+    //sm.travelling();
+    //am.travelling();
+    //am.travelling();
     return 0;
 }
