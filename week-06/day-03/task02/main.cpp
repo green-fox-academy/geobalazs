@@ -32,7 +32,9 @@ class Circle: Shape {
             this->area = radius * radius * 3.14;
         }
         void get(){
+            cout << endl;
             cout << "Radius: " << radius << " Area: " << area << endl;
+            cout << endl;
         }
 };
 
@@ -44,8 +46,21 @@ class Triangle: Shape {
         float height;
 
     public:
+        Triangle(float base , float height){
+            this -> base = base;
+            this -> height = height;
+        }
+        ~Triangle(){
+            cout << "You lost your base triangle >)" << endl;
+            cout << endl;
+        }
+
         void calc_area(){
             this->area = base * height / 2;
+        }
+        void get(){
+            cout << "Height: " << height << " Base: " << base << " Area: " << area << endl;
+            cout << endl;
         }
 };
 
@@ -53,11 +68,14 @@ int main()
 {
 
     Circle co(2);
-//    Triangle to(3,5);
+
+    Triangle to(3,5);
 
     co.calc_area();
     co.get();
-//    cout << to.calc_area() << endl;
+
+    to.calc_area();
+    to.get();
 
     return 0;
 }
