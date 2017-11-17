@@ -20,14 +20,17 @@ class Todo{
         void add_priority(){
             cin >> priority;
             priorityVector.push_back(priority);
-        /*for (unsigned int i = 0; i < priorityVector.size(); ++i){
-                cout << priorityVector[i] << taskVector[i] << endl;
-          }*/
         }
+        void lis_all(){
+            for (unsigned int i = 0; i < priorityVector.size(); ++i){
+                cout << priorityVector[i] << taskVector[i] << endl;
+            }
+        }
+
 
 };
 
-/*class Engine: public Todo{
+class Engine: public Todo{
     public:
         void program_engine(){
             while (1){
@@ -38,14 +41,20 @@ class Todo{
                     break;
                 }
                 else if (command == "-a"){
+                    cout << command << endl;
                     add_new_task();
                 }
                 else if (command == "-p"){
+                    cout << command << endl;
                     add_priority();
+                }
+                else if (command == "-l"){
+                    cout << command << endl;
+                    lis_all();
                 }
             }
         }
-};*/
+};
 
 class WelcomeScreen{
     public:
@@ -68,15 +77,15 @@ class WelcomeScreen{
 int main() {
     WelcomeScreen wso;
     Todo tdo;
-    //Engine eo;
+    Engine eo;
 
     wso.print_welcome_screen();
     //tdo.program_engine();
     //tdo.add_new_task();
     //tdo.add_priority();
     eo.program_engine();
-    tdo.add_new_task();
-    tdo.add_priority();
+    //tdo.add_new_task();
+    //tdo.add_priority();
 
     return 0;
 }
