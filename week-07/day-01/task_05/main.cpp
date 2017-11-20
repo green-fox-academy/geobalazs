@@ -5,7 +5,7 @@ using namespace std;
 // In the main(), put that function in a try block
 // Also in the main() catch, what your function throws
 
-void ErrorFuncThrowInt(){
+void ErrorFuncThrowChar(){
     throw 'Z';
 }
 
@@ -16,7 +16,7 @@ int main() {
 
     try{
         if (b == 0)
-            ErrorFuncThrowInt();
+            ErrorFuncThrowChar();
 
         cout << a / b << endl;
     }
