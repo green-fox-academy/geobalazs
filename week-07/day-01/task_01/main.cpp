@@ -8,14 +8,19 @@ using namespace std;
 
 int main() {
 
+    int a = 0;
+    int b = 0;
+    int c =0;
+
     try {
+        if (b == 0)
+            throw 0;
 
-        throw 33;
-
+        c = a / b;
+        cout << c << endl;
     }
-
     catch(int xxx){
-        cout << "This number were thrown from the try: " << xxx << endl;
+        cout << "You cannot divede by: " << xxx << endl;
     }
 
 	return 0;
