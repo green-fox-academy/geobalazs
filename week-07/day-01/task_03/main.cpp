@@ -9,9 +9,16 @@ using namespace std;
 
 int main() {
 
-    try{
+    int a = 0;
+    int b = 0;
+    //int c = 0;
 
-        throw runtime_error("OMG, an exception occured!");
+    try{
+        if (b == 0)
+            throw runtime_error("OMG, an exception occured! You cannot divide by Zero!");
+
+        //c = a / b;
+        cout << a/b << endl;
     }
 
     catch(runtime_error &error){
