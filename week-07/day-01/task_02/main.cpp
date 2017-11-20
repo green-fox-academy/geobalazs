@@ -7,10 +7,16 @@ using namespace std;
 
 int main() {
 
+    int a = 0;
+    int b = 0;
+    int c = 0;
+
     try{
+        if(b == 0)
+            throw "You cannot divide by Zero";
 
-        throw "an exception were thrown";
-
+        c = a / b;
+        cout << c << endl;
     }
 
     catch(const char *err){
