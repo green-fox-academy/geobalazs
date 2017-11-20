@@ -11,8 +11,14 @@ void ErrorFuncThrowInt(){
 
 int main() {
 
+    int a = 10;
+    int b = 0;
+
     try{
-        ErrorFuncThrowInt();
+        if (b == 0)
+            ErrorFuncThrowInt();
+
+        cout << a / b << endl;
     }
 
     catch(int xxx){
