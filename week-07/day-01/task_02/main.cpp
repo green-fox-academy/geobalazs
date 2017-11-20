@@ -13,13 +13,13 @@ int main() {
 
     try{
         if(b == 0)
-            throw "You cannot divide by Zero";
+            throw 'Z';
 
         c = a / b;
         cout << c << endl;
     }
 
-    catch(const char *err){
+    catch(char err){
         cout << err << endl;
     }
 
