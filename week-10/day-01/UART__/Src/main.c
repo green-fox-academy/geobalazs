@@ -52,6 +52,10 @@
 /* Private variables ---------------------------------------------------------*/
 
 	UART_HandleTypeDef uart_handle;
+	GPIO_InitTypeDef PWM_LEDJ60;
+	TIM_HandleTypeDef TimHandle;           //the timer's config structure
+	TIM_OC_InitTypeDef TimerOCConfig;
+
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -112,6 +116,28 @@ void uart_peripheral_config(){
 
 	  HAL_GPIO_Init(GPIOB, &GPIO_Rx_Config);
 }
+
+void led_config(){
+
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+
+	//PWM_LEDJ60.Alternate = GPIO_AF1_TIM1;
+	PWM_LEDJ60.Mode = GPIO_MODE_OUTPUT_PP;
+	PWM_LEDJ60.Pin = GPIO_PIN_8;
+	PWM_LEDJ60.Pull = GPIO_PULLDOWN;
+	PWM_LEDJ60.Speed = GPIO_SPEED_FAST;
+
+	HAL_GPIO_Init(GPIOA, &PWM_LEDJ60);
+}
+
+void led_toggle(){
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);   // setting the pin to 1
+	HAL_Delay(200);                                      // wait a second
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET); // setting the pin to 0
+	HAL_Delay(200);
+}
+
+
 /**
  * @brief  Main program
  * @param  None
@@ -146,17 +172,42 @@ int main(void) {
 	/* Application code here >) >) >) >) >) >) >) >) >)  */
 	uart_struct_init();
 	uart_peripheral_config();
-
-	/* BOARD LED and BUTTON INITIALIZE */
+	led_config();
+	setvbuf(stdin, NULL, _IONBF, 0);
+	BSP_COM_Init();
 	BSP_LED_Init(LED_GREEN);
-	BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
-
-	//BSP_COM_Init(COM1, &uart_handle);
 
 	/* Output a message using printf function */
 	printf("\n------------------WELCOME------------------\n");
 	printf("**********in STATIC reaction game**********\n");
-	printf("\t \t \(^ \(^ \(^ GEOBALAZS UART\(^ \(^ \(^ \n");
+	printf("\(^ \(^ \(^ GEOBALAZS UART\(^ \(^ \(^ \n");
+
+
+	//char outgoing[100];
+	//strcpy(outgoing , result);
+
+
+	while(1){
+		char recieved_text[100] = {};
+
+		HAL_UART_Receive( &uart_handle, (uint8_t*)recieved_text, 100, 500);
+
+		if(strcmp(recieved_text , "on") == 0){
+				BSP_LED_On(LED_GREEN);
+				printf("!on!\n");
+		} else if (strcmp(recieved_text , "off") == 0){
+				BSP_LED_Off(LED_GREEN);
+				printf("!off!\n");
+		} else if (strcmp(recieved_text , "off") != 0 && strcmp(recieved_text , "on") != 0 && strlen(recieved_text) > 0) {
+				BSP_LED_Off(LED_GREEN);
+				printf("wrong input\n");
+				for (int i = 0 ; i < 3; ++i){
+					led_toggle();
+				}
+		  }
+	}
+
+		//HAL_UART_Transmit(&uart_handle, (uint8_t*)recieved_text, strlen(recieved_text), HAL_MAX_DELAY);
 
 }
 
