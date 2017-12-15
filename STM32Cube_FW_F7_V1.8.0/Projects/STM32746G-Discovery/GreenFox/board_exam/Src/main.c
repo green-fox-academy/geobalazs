@@ -51,11 +51,21 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+
 GPIO_InitTypeDef Greenled;
 TIM_HandleTypeDef TimHandle;
 GPIO_InitTypeDef BlueButton;
+UART_HandleTypeDef UartHandle;
+
 /* Private function prototypes -----------------------------------------------*/
 
+#ifdef __GNUC__
+/* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
+ set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 
 static void SystemClock_Config(void);
 static void Error_Handler(void);
@@ -64,41 +74,9 @@ static void CPU_CACHE_Enable(void);
 
 /* Private functions ---------------------------------------------------------*/
 
-void green_LED_init();
-void timer_init();
-void blue_button_init();
-
-
-/**
-  * @brief  Main program
-  * @param  None
-  * @retval None
-  */
-int main(void)
-{
-	//configure the hardware
-	MPU_Config();
-	CPU_CACHE_Enable();
-	HAL_Init();
-	SystemClock_Config();
-
-	//my fucntion calls
-	green_LED_init();
-	timer_init();
-	blue_button_init();
-
-	while (1) {
-		if (TIM1->CNT <= 2000) {
-			HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 1);
-		} else {
-			HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 0);
-		}
-	}
-
-
-}
-
+//led init
 void green_LED_init() {
+
 	__HAL_RCC_GPIOI_CLK_ENABLE();
 
 	Greenled.Pin = GPIO_PIN_1;
@@ -109,7 +87,9 @@ void green_LED_init() {
 	HAL_GPIO_Init(GPIOI, &Greenled);
 }
 
-void timer_init() {
+//timer init
+/*void timer_init() {
+
 	__HAL_RCC_TIM1_CLK_ENABLE();
 
 	TimHandle.Instance               = TIM1;
@@ -122,18 +102,87 @@ void timer_init() {
 
 	HAL_TIM_Base_Start(&TimHandle);
 }
-
+*/
+//button init
 void blue_button_init() {
+
     __HAL_RCC_GPIOI_CLK_ENABLE();
 
     BlueButton.Pin = GPIO_PIN_11;
-    BlueButton.Mode = GPIO_MODE_INPUT;
-    BlueButton.Pull = GPIO_PULLUP;
-    BlueButton.Speed = GPIO_SPEED_HIGH;
+    BlueButton.Mode = GPIO_MODE_IT_RISING;
+    BlueButton.Pull = GPIO_NOPULL;
+    BlueButton.Speed = GPIO_SPEED_FAST;
 
     HAL_GPIO_Init(GPIOI, &BlueButton);
 }
+void uart_set(){
 
+	UartHandle.Init.BaudRate   = 115200;
+	UartHandle.Init.WordLength = UART_WORDLENGTH_8B;
+	UartHandle.Init.StopBits   = UART_STOPBITS_1;
+	UartHandle.Init.Parity     = UART_PARITY_NONE;
+	UartHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
+	UartHandle.Init.Mode       = UART_MODE_TX_RX;
+
+}
+/*Interrupt priorities and enabling interrupt (NVIC)*/
+void my_NVIC_set(){
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0F, 0x00);
+	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
+//wire the interrupt event to the HAL API
+void EXTI15_10_IRQHandler(){
+	 HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
+}
+// interrupt routine!
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 0);
+}
+/**
+  * @brief  Main program
+  * @param  None
+  * @retval None
+  */
+int main(void)
+{
+	//configure the hardware
+	MPU_Config();
+	CPU_CACHE_Enable();
+	HAL_Init();
+	SystemClock_Config();
+	uart_set();
+
+	BSP_COM_Init(COM1, &UartHandle);
+	//my fucntion calls
+	//green_LED_init();
+	//timer_init();
+	//blue_button_init();
+	//my_NVIC_set();
+
+	printf("\n------------------WELCOME------------------\n");
+	printf("**********Geobalazs Exam**********\n");
+
+
+	while (1) {
+		//if (TIM1->CNT <= 2000) {
+		//	HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 1);
+		//} else {
+	//		HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 0);
+		//}
+	}
+}
+/**
+ * @brief  Retargets the C library printf function to the USART.
+ * @param  None
+ * @retval None
+ */
+PUTCHAR_PROTOTYPE {
+	/* Place your implementation of fputc here */
+	/* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
+	HAL_UART_Transmit(&UartHandle, (uint8_t *) &ch, 1, 0xFFFF);
+
+	return ch;
+}
 
 /**
   * @brief  System Clock Configuration
