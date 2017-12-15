@@ -53,6 +53,7 @@
 /* Private variables ---------------------------------------------------------*/
 GPIO_InitTypeDef Greenled;
 TIM_HandleTypeDef TimHandle;
+GPIO_InitTypeDef BlueButton;
 /* Private function prototypes -----------------------------------------------*/
 
 
@@ -65,6 +66,7 @@ static void CPU_CACHE_Enable(void);
 
 void green_LED_init();
 void timer_init();
+void blue_button_init();
 
 
 /**
@@ -83,9 +85,10 @@ int main(void)
 	//my fucntion calls
 	green_LED_init();
 	timer_init();
+	blue_button_init();
 
 	while (1) {
-		if (TIM1->CNT <= 4000) {
+		if (TIM1->CNT <= 2000) {
 			HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 1);
 		} else {
 			HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 0);
@@ -110,8 +113,8 @@ void timer_init() {
 	__HAL_RCC_TIM1_CLK_ENABLE();
 
 	TimHandle.Instance               = TIM1;
-	TimHandle.Init.Period            = 4000; //Counting to 4000, so at 4 kHz timer freq the reqister will overflow in 1 sec.
-	TimHandle.Init.Prescaler         = 54000; //Now clock speed is 216.000.000 Hz / 54.000 = 4000 Hz(Max value is 65535)
+	TimHandle.Init.Period            = 4000;
+	TimHandle.Init.Prescaler         = 54000;
 	TimHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
 	TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
 
@@ -119,6 +122,18 @@ void timer_init() {
 
 	HAL_TIM_Base_Start(&TimHandle);
 }
+
+void blue_button_init() {
+    __HAL_RCC_GPIOI_CLK_ENABLE();
+
+    BlueButton.Pin = GPIO_PIN_11;
+    BlueButton.Mode = GPIO_MODE_INPUT;
+    BlueButton.Pull = GPIO_PULLUP;
+    BlueButton.Speed = GPIO_SPEED_HIGH;
+
+    HAL_GPIO_Init(GPIOI, &BlueButton);
+}
+
 
 /**
   * @brief  System Clock Configuration
