@@ -1,0 +1,12 @@
+void startup();
+float addition(float a , float b);
+float division(float a , float b);
+int division_with_reminder();
+float multiplication(float a , float b);
+float subtraction(float a, float b);
+double pwr(double a, double b);
+double squrt(double a);
+double log_ten(double a);
+int binary_decimal_converter(long long a);
+int decto_binary_converter(long long a);
+int hexto_decimal_converter(long long a);

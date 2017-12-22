@@ -286,14 +286,14 @@ int main(void)
 /* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
 /*GEOKB LED RED*/
     	//When BUTTON is pressed LED light on//
-    	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 0){
+    	//if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 0){
 			for(int i = 1 ; i <= 128 ; i <<= 1){
 				pseudo_neighbor_LED(i);
 			}
 			for(int i = 128 ; i >= 1 ; i >>= 1){
 				pseudo_neighbor_LED(i);
 			}
-    	}
+    	//}
 /* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
     }
 

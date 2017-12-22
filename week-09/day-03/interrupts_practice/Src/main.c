@@ -1,3 +1,40 @@
+/**
+ ******************************************************************************
+ * @file    Templates/Src/main.c
+ * @author  MCD Application Team
+ * @version V1.0.3
+ * @date    22-April-2016
+ * @brief   STM32F7xx HAL API Template project
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *   1. Redistributions of source code must retain the above copyright notice,
+ *      this list of conditions and the following disclaimer.
+ *   2. Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
+ *      and/or other materials provided with the distribution.
+ *   3. Neither the name of STMicroelectronics nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************
+ */
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include <string.h>
@@ -14,14 +51,9 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-
-
 UART_HandleTypeDef uart_handle;
-TIM_HandleTypeDef TimHandle;
-GPIO_InitTypeDef gpio_init;
 
-uint8_t state = 0;
-uint8_t flag = 0;
+volatile uint32_t timIntPeriod;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -38,15 +70,7 @@ static void Error_Handler(void);
 static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
 
-void Peripherials_Config();
-
-void UART_config();
-void interrupt_tim2_init(uint16_t period);
-void TIM2_IRQHandler();
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
-void interrupt_GPIO_init();
-void EXTI15_10_IRQHandler();
-//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
+/* Private functions ---------------------------------------------------------*/
 
 /**
  * @brief  Main program
@@ -54,105 +78,35 @@ void EXTI15_10_IRQHandler();
  * @retval None
  */
 int main(void) {
+	/* This project template calls firstly two functions in order to configure MPU feature
+	 and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
+	 These functions are provided as template implementation that User may integrate
+	 in his application, to enhance the performance in case of use of AXI interface
+	 with several masters. */
 
-	Peripherials_Config();
-	UART_config();
-	interrupt_tim2_init(10000);
-	interrupt_GPIO_init();
+	/* Configure the MPU attributes as Write Through */
+	MPU_Config();
 
-	BSP_LED_Init(LED_GREEN);  //onboard led
-	BSP_PB_Init(BUTTON_WAKEUP, BUTTON_MODE_EXTI);  //onboard button in interrupt mode!
+	/* Enable the CPU Cache */
+	CPU_CACHE_Enable();
 
-	printf("-------------------WELCOME-----------------\n");
-	printf("***************GEOBALAZS EXAM**********\n\n");
+	/* STM32F7xx HAL library initialization:
+	 - Configure the Flash ART accelerator on ITCM interface
+	 - Configure the Systick to generate an interrupt each 1 msec
+	 - Set NVIC Group Priority to 4
+	 - Low Level Initialization
+	 */
+	HAL_Init();
 
-	while (1) {
+	/* Configure the System clock to have a frequency of 216 MHz */
+	SystemClock_Config();
 
-		switch(state){
-			case 0:         //open
-				if(flag == 0){
-					printf("Opened\n");
-					interrupt_tim2_init(10000);
-					flag = 1;
-				}
-				//HAL_Delay(1000);
-				break;
-			case 1:			//closing
-				printf("Closing\n");
-				HAL_Delay(5000);
-				state++;
-				break;
-			case 2:			//closed
-				if(flag == 1){
-				HAL_NVIC_DisableIRQ(TIM2_IRQn);
-				BSP_LED_Off(LED_GREEN);
-				printf("Closed\n");
-				flag = 0;
-				}//HAL_Delay(1000);
-				break;
-			case 3:			//opening
-				HAL_NVIC_EnableIRQ(TIM2_IRQn);
-				printf("Opening\n");
-				HAL_Delay(6000);
-				state = 0;
-				break;
-			default:
-				break;
-		}
-	}
-}
+	BSP_PB_Init(BUTTON_WAKEUP, BUTTON_MODE_EXTI);
 
-/* Private functions ---------------------------------------------------------*/
-void interrupt_tim2_init(uint16_t period) {
-	__HAL_RCC_TIM2_CLK_ENABLE();
+	/* Add your application code here
+	 */
+	BSP_LED_Init(LED_GREEN);
 
-	TimHandle.Instance               = TIM2; //108MHz
-	TimHandle.Init.Period            = period - 1;   // 10000 - 1 1sec on 1 sec off on tim2
-	TimHandle.Init.Prescaler         = 10800 - 1;   //
-	TimHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
-	TimHandle.Init.CounterMode 		 = TIM_COUNTERMODE_UP;
-
-	HAL_TIM_Base_Init(&TimHandle);
-	HAL_TIM_Base_Start_IT(&TimHandle);
-	HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0x00);
-	HAL_NVIC_EnableIRQ(TIM2_IRQn);
-}
-
-void TIM2_IRQHandler() {
-	HAL_TIM_IRQHandler(&TimHandle);
-}
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	//what u want to do on period elapsed
-	BSP_LED_Toggle(LED_GREEN);
-}
-
-void interrupt_GPIO_init() {
-	__HAL_RCC_GPIOI_CLK_ENABLE();
-	gpio_init.Pin = GPIO_PIN_11;
-	gpio_init.Mode = GPIO_MODE_IT_RISING;
-	gpio_init.Speed = GPIO_SPEED_HIGH;
-	gpio_init.Pull = GPIO_NOPULL;
-
-	HAL_GPIO_Init(GPIOI, &gpio_init);
-	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 15, 0);
-}
-
-void EXTI15_10_IRQHandler() {
-	//this is for button on board, for another button change irq!
-	if(state == 0 || state == 2){
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
-	}
-}
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	//what u want to do on button press
-	state++;
-	interrupt_tim2_init(5000);
-}
-
-void UART_config() {
-	uart_handle.Instance = USART1;
 	uart_handle.Init.BaudRate = 115200;
 	uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
 	uart_handle.Init.StopBits = UART_STOPBITS_1;
@@ -162,45 +116,13 @@ void UART_config() {
 
 	BSP_COM_Init(COM1, &uart_handle);
 
-	/*
-	 * UART config without BSP_COM_Init"
-	 *
-	GPIO_InitTypeDef TX;
-	GPIO_InitTypeDef RX;
 
-	__HAL_RCC_GPIOB_CLK_ENABLE();
-	__HAL_RCC_GPIOA_CLK_ENABLE();
-	__HAL_RCC_USART1_CLK_ENABLE();
-
-	TX.Pin = GPIO_PIN_9;
-	TX.Mode = GPIO_MODE_AF_PP;
-	TX.Speed = GPIO_SPEED_FAST;
-	TX.Pull = GPIO_PULLUP;
-	TX.Alternate = GPIO_AF7_USART1;
-
-	RX.Pin = GPIO_PIN_7;
-	RX.Mode = GPIO_MODE_AF_PP;
-	RX.Speed = GPIO_SPEED_FAST;
-	RX.Pull = GPIO_PULLUP;
-	RX.Alternate = GPIO_AF7_USART1;
+	printf("\n-----------------WELCOME-----------------\r\n");
+	printf("**********in STATIC interrupts WS**********\r\n\n");
 
 
-	HAL_GPIO_Init(GPIOA, &TX);
-	HAL_GPIO_Init(GPIOB, &RX);
-	HAL_UART_Init(&uart_handle);*/
-}
-
-void Peripherials_Config() {
-    /* Configure the MPU attributes as Write Through */
-    MPU_Config();
-
-    /* Enable the CPU Cache */
-    CPU_CACHE_Enable();
-
-    HAL_Init();
-
-    /* Configure the System clock to have a frequency of 216 MHz */
-    SystemClock_Config();
+	while (1) {
+	}
 }
 
 /**

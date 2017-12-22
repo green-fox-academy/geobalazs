@@ -52,7 +52,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 	UART_HandleTypeDef uart_handle;
-	GPIO_InitTypeDef LEDJ60;
+	GPIO_InitTypeDef PWM_LEDJ60;
+	TIM_HandleTypeDef TimHandle;           //the timer's config structure
+	TIM_OC_InitTypeDef TimerOCConfig;
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,12 +122,12 @@ void led_config(){
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 
 	//PWM_LEDJ60.Alternate = GPIO_AF1_TIM1;
-	LEDJ60.Mode = GPIO_MODE_OUTPUT_PP;
-	LEDJ60.Pin = GPIO_PIN_8;
-	LEDJ60.Pull = GPIO_PULLDOWN;
-	LEDJ60.Speed = GPIO_SPEED_FAST;
+	PWM_LEDJ60.Mode = GPIO_MODE_OUTPUT_PP;
+	PWM_LEDJ60.Pin = GPIO_PIN_8;
+	PWM_LEDJ60.Pull = GPIO_PULLDOWN;
+	PWM_LEDJ60.Speed = GPIO_SPEED_FAST;
 
-	HAL_GPIO_Init(GPIOA, &LEDJ60);
+	HAL_GPIO_Init(GPIOA, &PWM_LEDJ60);
 }
 
 void led_toggle(){
@@ -171,9 +173,8 @@ int main(void) {
 	uart_struct_init();
 	uart_peripheral_config();
 	led_config();
-
-	setvbuf(stdin, NULL, _IONBF, 0); //uart magic
-
+	setvbuf(stdin, NULL, _IONBF, 0);
+	BSP_COM_Init();
 	BSP_LED_Init(LED_GREEN);
 
 	/* Output a message using printf function */

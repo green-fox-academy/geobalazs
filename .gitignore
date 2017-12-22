@@ -1,5 +1,6 @@
-*.exe
-*.depend
-*.layout
-*.cbp
-*.o
+*
+!*/
+!*.c
+!*.cpp
+!*.h
+!*.vi	

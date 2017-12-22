@@ -1,10 +1,10 @@
- /**
+/**
   ******************************************************************************
-  * @file    Templates/Src/main.c 
+  * @file    Templates/Src/main.c
   * @author  MCD Application Team
   * @version V1.0.3
-  * @date    22-April-2016 
-  * @brief   STM32F7xx HAL API Template project 
+  * @date    22-April-2016
+  * @brief   STM32F7xx HAL API Template project
   ******************************************************************************
   * @attention
   *
@@ -44,7 +44,7 @@
 
 /** @addtogroup Templates
   * @{
-  */ 
+  */
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -63,14 +63,183 @@ static void CPU_CACHE_Enable(void);
   * @param  None
   * @retval None
   */
+/* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
+/*GEOKB LED RED*/
+
+void led_initialize(){
+// **** initialize LED A4 -> STMBOARD D0 PIN **** //
+	__HAL_RCC_GPIOC_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA4;            // create a config structure
+	LEDA4.Pin = GPIO_PIN_7;            // this is about PIN 1
+	LEDA4.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA4.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA4.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOC, &LEDA4);      // initialize the pin on GPIO* port with HAL
+
+// **** initialize LED A6 -> STMBOARD D1 PIN **** //
+	__HAL_RCC_GPIOF_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA6;            // create a config structure
+	LEDA6.Pin = GPIO_PIN_6;            // this is about PIN 2
+	LEDA6.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA6.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA6.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOC, &LEDA6);      // initialize the pin on GPIO* port with HAL
+
+// **** initialize LED A8 -> STMBOARD D2 PIN **** //
+	__HAL_RCC_GPIOG_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA8;            // create a config structure
+	LEDA8.Pin = GPIO_PIN_6;            // this is about PIN 3
+	LEDA8.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA8.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA8.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOG, &LEDA8);      // initialize the pin on GPIO* port with HAL
+
+// **** initialize LED A10 -> STMBOARD D3 PIN **** //
+	__HAL_RCC_GPIOB_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA10;            // create a config structure
+	LEDA10.Pin = GPIO_PIN_4;            // this is about PIN 4
+	LEDA10.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA10.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA10.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOB, &LEDA10);      // initialize the pin on GPIO* port with HAL
+
+// **** initialize LED A12 -> STMBOARD D4 PIN **** //
+//	__HAL_RCC_GPIOF_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA12;            // create a config structure
+	LEDA12.Pin = GPIO_PIN_7;            // this is about PIN 5
+	LEDA12.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA12.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA12.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOG, &LEDA12);      // initialize the pin on GPIO* port with HAL
+
+// **** initialize LED A14 -> STMBOARD A0 PIN **** //
+	__HAL_RCC_GPIOI_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA14;            // create a config structure
+	LEDA14.Pin = GPIO_PIN_0;            // this is about PIN 6
+	LEDA14.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA14.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA14.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOI, &LEDA14);      // initialize the pin on GPIO* port with HAL
+
+// **** initialize LED A16 -> STMBOARD D6 PIN **** //
+	__HAL_RCC_GPIOH_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA16;            // create a config structure
+	LEDA16.Pin = GPIO_PIN_6;            // this is about PIN 7
+	LEDA16.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA16.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA16.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOH, &LEDA16);      // initialize the pin on GPIO* port with HAL
+
+// **** initialize LED A18 -> STMBOARD D7 PIN **** //
+//	__HAL_RCC_GPIOF_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+	GPIO_InitTypeDef LEDA18;            // create a config structure
+	LEDA18.Pin = GPIO_PIN_3;            // this is about PIN 8
+	LEDA18.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
+	LEDA18.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
+	LEDA18.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+	HAL_GPIO_Init(GPIOI, &LEDA18);      // initialize the pin on GPIO* port with HAL
+
+}
+
+/* @}-^-- @}-^-- @}-^-- @}-^-- **** BUTTON initialization @}-^-- @}-^-- @}-^-- @}-^-- @}-^--*/
+void button_initialize(){
+// **** initialize BUTTON A22 -> STMBOARD A0 PIN **** //
+		__HAL_RCC_GPIOA_CLK_ENABLE();    // we need to enable the GPIO* port's clock first
+
+		GPIO_InitTypeDef BUTTONA22;            // create a config structure
+		BUTTONA22.Pin = GPIO_PIN_0;            // this is about PIN 8
+		BUTTONA22.Mode = GPIO_MODE_INPUT;  // Configure as output with push-up-down enabled
+		BUTTONA22.Pull = GPIO_PULLUP;        // the push-up-down should work as pulldown
+		BUTTONA22.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
+
+		HAL_GPIO_Init(GPIOA, &BUTTONA22);      // initialize the pin on GPIO* port with HAL
+}
+/* @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^-- @}-^--*/
+
+/*:~> :~> :~> :~> :~>Function to take the LEDS pseudo-neighbor PINs  :~> :~> :~> :~> :~> :~>*/
+void pseudo_neighbor_LED(int pseudopin){
+
+	if(pseudopin == 1){
+  	      // **** set LED A4 = D0 PIN = C7 STMPIN = 7th bit -> PIN 1 **** //
+  	      GPIOC->ODR = GPIOC->ODR | 0b00000000000000000000000010000000; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 0 - to 1)
+  	      HAL_Delay(50);                      // wait a second
+  	      GPIOC->ODR = GPIOC->ODR & 0b11111111111111111111111101111111; // this will set the lowest bit (PIN 0) to 0. Guess why!
+	}
+	else if (pseudopin == 2){
+  	     // **** set LED A6 = D1 PIN = C6 STMPIN = 6th bit -> PIN 2 **** //
+  	     GPIOC->ODR = GPIOC->ODR | 0b00000000000000000000000001000000; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 10 - to 1)
+  	     HAL_Delay(50);                      // wait a second
+  	     GPIOC->ODR = GPIOC->ODR & 0b11111111111111111111111110111111; // this will set the lowest bit (PIN 10) to 0. Guess why!
+	}
+	else if (pseudopin == 4){
+ 	     // **** set LED A8 = D2 PIN = G6 STMPIN = 6th bit -> PIN 3 **** //
+ 	     GPIOG->ODR = GPIOG->ODR | 0b00000000000000000000000001000000; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 9 - to 1)
+ 	     HAL_Delay(50);                      // wait a second
+ 	     GPIOG->ODR = GPIOG->ODR & 0b11111111111111111111111110111111; // this will set the lowest bit (PIN 9) to 0. Guess why!
+
+	}
+	else if (pseudopin == 8){
+ 	     // **** set LED A10 = D3 PIN = B4 STMPIN = 4th bit -> PIN 4 **** //
+ 	     GPIOB->ODR = GPIOB->ODR | 0b00000000000000000000000000010000; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 8 - to 1)
+ 	     HAL_Delay(50);                      // wait a second
+ 	     GPIOB->ODR = GPIOB->ODR & 0b11111111111111111111111111101111; // this will set the lowest bit (PIN 8) to 0. Guess why!
+	}
+	else if (pseudopin == 16){
+	     // **** set LED A12 = D4 PIN = G7 STMPIN = 7th bit -> PIN 5 **** //
+	     GPIOG->ODR = GPIOG->ODR | 0b00000000000000000000000010000000; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 8 - to 1)
+	     HAL_Delay(50);                      // wait a second
+	     GPIOG->ODR = GPIOG->ODR & 0b11111111111111111111111101111111; // this will set the lowest bit (PIN 8) to 0. Guess why!
+	}
+	else if (pseudopin == 32){
+	     // **** set LED A14 = D5 PIN = I0 STMPIN = 0th bit -> PIN 6 **** //
+	     GPIOI->ODR = GPIOI->ODR | 0b00000000000000000000000000000001; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 8 - to 1)
+	     HAL_Delay(50);                      // wait a second
+	     GPIOI->ODR = GPIOI->ODR & 0b11111111111111111111111111111110; // this will set the lowest bit (PIN 8) to 0. Guess why!
+	}
+	else if (pseudopin == 64){
+	     // **** set LED A16 = D6 PIN = H6 STMPIN = 6th bit -> PIN 7 **** //
+	     GPIOH->ODR = GPIOH->ODR | 0b00000000000000000000000001000000; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 8 - to 1)
+	     HAL_Delay(50);                      // wait a second
+	     GPIOH->ODR = GPIOH->ODR & 0b11111111111111111111111110111111; // this will set the lowest bit (PIN 8) to 0. Guess why!
+	}
+	else if (pseudopin == 128){
+	     // **** set LED A18 = D7 PIN = I3 STMPIN = 3th bit -> PIN 8 **** //
+	     GPIOI->ODR = GPIOI->ODR | 0b00000000000000000000000000001000; // set the lowest bit to 1, leave the others as they are (this will set the lowest bit - PIN 8 - to 1)
+	     HAL_Delay(50);                      // wait a second
+	     GPIOI->ODR = GPIOI->ODR & 0b11111111111111111111111111110111; // this will set the lowest bit (PIN 8) to 0. Guess why!
+	}
+}
+/*:~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~> :~>*/
+
+/* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
+
+/*VVVVVVVVVV HERE IS THE FCKN MAIN VVVVVVVVVVVVVVVV*//*VVVVVVVVVV HERE IS THE FCKN MAIN VVVVVVVVVVVVVVVV*/
+/*VVVVVVVVVV HERE IS THE FCKN MAIN VVVVVVVVVVVVVVVV*//*VVVVVVVVVV HERE IS THE FCKN MAIN VVVVVVVVVVVVVVVV*/
+
 int main(void)
 {
-  /* This project template calls firstly two functions in order to configure MPU feature 
+  /* This project template calls firstly two functions in order to configure MPU feature
      and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
-     These functions are provided as template implementation that User may integrate 
-     in his application, to enhance the performance in case of use of AXI interface 
-     with several masters. */ 
-  
+     These functions are provided as template implementation that User may integrate
+     in his application, to enhance the performance in case of use of AXI interface
+     with several masters. */
+
   /* Configure the MPU attributes as Write Through */
   MPU_Config();
 
@@ -89,24 +258,54 @@ int main(void)
   SystemClock_Config();
 
 
-  /* Add your application code here     */
-  BSP_LED_Init(LED_GREEN);
-  BSP_LED_On(LED_GREEN);
+/* :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) */
+/*GEOKB GREEN LED*/
+    //BSP_LED_Init(LED_GREEN);
+    //BSP_LED_On(LED_GREEN);
+/* :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) */
+
+/* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
+/*GEOKB LED RED*/
+    led_initialize();
+    button_initialize();
+/* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
 
   /* Infinite loop */
-  while (1)
-  {
-	  //TODO:
-	  //Flash the ledwith 200 ms period time
-	  HAL_Delay(200); /* GEOBALAZS led blinkig*/
-	  BSP_LED_Toggle(LED_GREEN);
+    while (1)
+    {
+/* :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) */
+/*GEOKB GREEN LED*/
 
-  }
+    	//TODO:
+        //Flash the led on the board with 1000 ms period time
+  	    //HAL_Delay(1000); /* GEOBALAZS led blinkig*/
+  	    //BSP_LED_Toggle(LED_GREEN);
+/* :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) */
+
+
+/* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
+/*GEOKB LED RED*/
+    	//When BUTTON is pressed LED light on//
+    	//if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 0){
+			for(int i = 1 ; i <= 128 ; i <<= 1){
+				pseudo_neighbor_LED(i);
+			}
+			for(int i = 128 ; i >= 1 ; i >>= 1){
+				pseudo_neighbor_LED(i);
+			}
+    	//}
+/* >>  \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ \(^ << */
+    }
+
+
 }
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^ HERE IS THE END OF THE FCKN MAIN ^^^^^^^^^^^^^^^^^^^^^^^^*/
+/*^^^^^^^^^^^^^^^^^^^^^^^^ HERE IS THE END OF THE FCKN MAIN ^^^^^^^^^^^^^^^^^^^^^^^^*/
 
 /**
   * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
+  *         The system Clock is configured as follow :
   *            System Clock source            = PLL (HSE)
   *            SYSCLK(Hz)                     = 216000000
   *            HCLK(Hz)                       = 216000000
@@ -136,7 +335,7 @@ static void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 25;
-  RCC_OscInitStruct.PLL.PLLN = 432;  
+  RCC_OscInitStruct.PLL.PLLN = 432;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 9;
   if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -149,14 +348,14 @@ static void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
+
+  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2
      clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
   if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
   {
     Error_Handler();
@@ -186,7 +385,7 @@ static void Error_Handler(void)
 static void MPU_Config(void)
 {
   MPU_Region_InitTypeDef MPU_InitStruct;
-  
+
   /* Disable the MPU */
   HAL_MPU_Disable();
 
@@ -233,7 +432,7 @@ static void CPU_CACHE_Enable(void)
   * @retval None
   */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
@@ -246,10 +445,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
