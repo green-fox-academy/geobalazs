@@ -4,72 +4,127 @@
 #include <string.h>
 
 
-typedef struct TodoApp {
+typedef struct Todo {
+    char command[5];
     char todo_text[500];
-    int todo_id;
     int priority;
-
+    int id;
 }TodoApp;
 
+int counter = 0;
+
 void print_welcome_screen();
+void user_todo_parser(char _input[]);
+void set_user_input(char _input[]);
+void list_task();
+void write_to_file();
 
-void user_todo_parser(char _input[500] , char * _command , TodoApp * _todo_text);
+typedef enum { READY , NOTREADY } CHECKLIST;
 
-void set_user_input(char _input[500]);
-
-//typedef enum check
-
-
-
-
+char user_input[500];
+TodoApp TODO[100];
 
 
 int main()
 {
+
+//welcomescreen
     print_welcome_screen();
-    TodoApp TODO;
-
-    char user_input[500] = "-a feed the dog";
-    char command;
-
-    //set_user_input(user_input);
-    user_todo_parser(user_input , &command , &TODO);
-
-    //printf("command: %s, todo: %s \n" , command , TODO.todo_text);
-    //printf("userinput: %s\n\n" , user_input);
+// first input
+//    set_user_input(user_input);
 
 
-    //printf("userinput: %s\n\n" , user_input);
-    //printf("\n\n Text by user: %s" , get_user_input());
+    while(1){
+        set_user_input(user_input);
 
-   // strcpy(TODO.todo_text , "feed the dog");
-   // printf("%s\n" , TODO.todo_text);
+        if (strstr(user_input , "-a") != 0){
+            user_todo_parser(user_input);
 
+        } else if (strstr(user_input , "-l") != 0){
+            list_task();
+
+        } else if (strstr(user_input , "-wr") != 0){
+            write_to_file();
+
+        } else {
+            break;
+        }
+     }
     return 0;
 }
 
-void user_todo_parser(char _input[500] , char * _command , TodoApp * _todo_text){
+void write_to_file(){
+    FILE *fp;
+    int i = 0;
+    fp = fopen("todo.txt", "w+");
+
+    if(fp == NULL){
+        return -1;
+    }
+
+    fprintf(fp ,
+        "List by number\n"
+        "====================\n"
+        "Num | Priority | Tasks\n"
+    );
+    while(i < counter){
+        fprintf(fp , "%d, %d, %s", TODO[i].id + 1, TODO[i].priority, TODO[i].todo_text);
+        i++;
+    }
+
+    fclose(fp);
+}
+
+void list_task(){
+    //TodoApp todo;
+    int i = 0;
+    printf(
+    "List by number\n"
+    "====================\n"
+    "Num | Priority | Tasks\n"
+    );
+    for ( i ; i < counter ; ++i){
+        printf("%d, %d, %s", TODO[i].id + 1, TODO[i].priority, TODO[i].todo_text);
+    }
+}
+
+void user_todo_parser(char _input[]){
     int i = 0;
     int j = 0;
-    int _input_size = strlen(_input);
+    char input_temp[70];
+    strcpy(input_temp, _input);
+    char temp[500];
+    char *token;
 
-    while(_input[i] != ' '){
+    //TodoApp todo;
+
+    int _input_size = strlen(input_temp);
+
+    while(input_temp[i] != ' '){
         ++i;
     }
 
-    _command = strtok(_input , " ");
+    token = strtok(input_temp , " ");
+    strcpy(TODO[counter].command, token);
+
+    TODO[counter].id = counter;
 
     int todo_length = _input_size - i;
     while(i <= todo_length){
-        _todo_text[j] = _input[i+1];
+        temp[j] = input_temp[i+1];
         ++j;
         ++i;
     }
-    _todo_text[j] = '\0';
+    //temp[j] = '\0';
+
+    strcpy(TODO[counter].todo_text, temp);
+
+    counter++;
+    //printf("command: %s, todo: %s, id: %d\n" , TODO.command , TODO.todo_text, counter);
 
 }
 
-void set_user_input(char _input[500]){
+void set_user_input(char _input[]){
 
     char ch;
     int i = 0;
@@ -81,7 +136,7 @@ void set_user_input(char _input[500]){
         _input[i] = ch;
         ++i;
     }
-    _input[i] = '\0';
+    //_input[i] = '\0';
 }
 
 void print_welcome_screen(){
