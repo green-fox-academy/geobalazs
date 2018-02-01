@@ -4,7 +4,7 @@
 #include <string.h>
 
 
-typedef struct Todo {
+typedef struct{
     char command[5];
     char todo_text[500];
     int priority;
@@ -22,12 +22,13 @@ void write_to_file();
 typedef enum { READY , NOTREADY } CHECKLIST;
 
 char user_input[500];
-TodoApp TODO[100];
+TodoApp TODO[10];
 
 
 int main()
 {
 
+    //TodoApp array[10] = TODO;
 //welcomescreen
     print_welcome_screen();
 // first input
