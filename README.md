@@ -12,8 +12,8 @@ Requirement
 ```
 My example codes
 ```
->1. [RGB LED](https://github.com/greenfox-academy/huli-smarthome-device-static-fuchsit/blob/development/example-project/SW4STM32/example-project/Example/User/rgb_led_color.c)
->2. [AirCondi](https://github.com/greenfox-academy/huli-smarthome-device-static-fuchsit/blob/development/example-project/SW4STM32/example-project/Example/User/aircondi.c)
+>1. [RGB LED](https://github.com/greenfox-academy/huli-smarthome-device-static-fuchsit/blob/development/common/rgb_led_color/Src/rgb_led_color.c)
+>2. [AirCondi](https://github.com/greenfox-academy/huli-smarthome-device-static-fuchsit/blob/development/common/fan_control/Src/aircondi.c)
 >3. [LED control on UART](https://github.com/greenfox-academy/geobalazs/blob/master/STM32Cube_FW_F7_V1.8.0/Projects/STM32746G-Discovery/GreenFox/UART__/Src/main.c)
 >4. [level crossing](https://github.com/greenfox-academy/geobalazs/blob/master/STM32Cube_FW_F7_V1.8.0/Projects/STM32746G-Discovery/GreenFox/exam_board/Src/main.c)
 >5. [control loop](https://github.com/greenfox-academy/geobalazs/blob/master/stm32%20F7%20projects/control_loop/Src/main.c)
