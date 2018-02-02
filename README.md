@@ -10,6 +10,10 @@ Requirement
 >1. [exam requirement](https://github.com/greenfox-academy/definitions/blob/master/requirement/final-hardware.md)
 
 ```
+Exam code
+```
+>1. [exam code](https://github.com/greenfox-academy/geobalazs/tree/master/final_exam)
+```
 My example codes
 ```
 >1. [RGB LED](https://github.com/greenfox-academy/huli-smarthome-device-static-fuchsit/blob/development/common/rgb_led_color/Src/rgb_led_color.c)
