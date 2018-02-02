@@ -8,7 +8,7 @@ float big_float_searcher(float _array[]);
 
 int main()
 {
-    float array[] = {3.2 , 4.5, 11.45 , 5.5 , 10.5};
+    float array[] = {3.2 , 20.5 , 4.5, 11.45 , 5.5 , 10.5};
 
     printf( "%f", big_float_searcher(array));
 
@@ -24,13 +24,18 @@ float big_float_searcher(float _array[]){
 
     float second_biggest_float_num = 0;
 
-    while( j <= 5){
-        if ( _array [j] > _array [i + 1] ){
-            second_biggest_float_num = _array[j];
-            ++i;
-        } else{
-            ++j;
+    while( i <= 5){
+        if ( second_biggest_float_num == 0){
+            if ( _array [i] < _array [i + 1] ){
+            second_biggest_float_num = _array[i + 1];
+            }
         }
+        if (second_biggest_float_num != 0){
+            if ( second_biggest_float_num < _array [i + 1] ){
+            second_biggest_float_num = _array[i+1];
+            }
+        }
+        ++i;
     }
 
     return second_biggest_float_num;
